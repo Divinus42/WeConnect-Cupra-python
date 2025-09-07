@@ -59,7 +59,7 @@ class ChargingStatus(GenericStatus):
             else:
                 self.chargePower_kW.enabled = False
             if 'chargeRate_kmph' in fromDict['value']:
-                chargeRate_kmph = float(fromDict['value']['chargeRate_kmph'])
+                chargeRate_kmph = float(chargeRate_raw) if chargeRate_raw is not None else 0.0
                 if self.fixAPI and chargeRate_kmph != 0 \
                         and self.chargingState.value in [ChargingStatus.ChargingState.OFF,
                                                          ChargingStatus.ChargingState.READY_FOR_CHARGING,
